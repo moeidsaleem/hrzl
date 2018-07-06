@@ -5,6 +5,10 @@
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
 
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
@@ -34,7 +38,8 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  super: #3266c0,
+  primary:    #76a4f3,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,

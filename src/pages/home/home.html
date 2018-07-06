@@ -1,14 +1,67 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
+  <ion-navbar color="super">
+    <ion-title text-center class="monstserrat">
+      HRZL
     </ion-title>
+    <ion-buttons right>
+            <button ion-button icon-only (click)="goSettings()">
+              <ion-icon name="md-settings" ></ion-icon>
+            </button>
+            
+          </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content style="background-color:#fafafa">
+    <ion-fab right bottom (click)="addPage()">
+        <button ion-fab color="super" class="shadow"   [disabled]="user?.active_booking==true">      
+            <ion-icon name="md-add"></ion-icon>
+        </button>
+      </ion-fab>
+      
+      <ion-fab left bottom (click)="promptPass()">
+      <button ion-fab color="super" class="shadow"   [disabled]="items.length <=0">      
+        <ion-icon name="exit"></ion-icon>
+    </button>
+</ion-fab>
+
+
+      <div  >
+          <ion-searchbar [(ngModel)]="userFilter.brand" ></ion-searchbar>
+          <!-- <ion-auto-complete style="widows: 100%;" [dataProvider]="completeTestService"></ion-auto-complete> -->
+
+        </div>
+
+
+    <div  class="paddingBox"></div>
+
+
+  <main style="margin-bottom:90px;" *ngIf="items">
+    
+    
+    <ion-list #slidingitem *ngFor="let a of items | filterBy: userFilter | groupBy:'date'">
+            <ion-row class="rowx">
+                    <span> 1{{a?.key}}</span>
+                   </ion-row>
+            <ion-item *ngFor="let x of a.value">
+                    <ion-thumbnail item-start style="border-radius:20px">
+                        <img [src]="x.img1 || './assets/imgs/cola.jpg'" style="border-radius:20px" >
+                    </ion-thumbnail>
+                    
+                    <h2 style="font-size:20px">{{x?.brand}}</h2>
+                    <p style="font-size:12px">{{x?.location}}</p>
+                    <ion-icon name="ios-remove-circle-outline" color="danger" item-end  (click)="remove(x.itemId)"></ion-icon>
+                </ion-item>
+    </ion-list>
+   
+    <!-- <ion-item >
+        <ion-thumbnail item-start style="border-radius:20px">
+            <img src="./assets/imgs/js.jpg" style="border-radius:20px" >
+        </ion-thumbnail>
+        <h2 style="font-size:20px">JS Bank</h2>
+        <p style="font-size:12px">Murree Road</p>
+        <ion-icon name="ios-remove-circle-outline" color="danger" item-end></ion-icon>
+    </ion-item>                  -->
+</main>
+
 </ion-content>

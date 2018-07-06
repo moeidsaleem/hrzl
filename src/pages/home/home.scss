@@ -1,3 +1,38 @@
 page-home {
 
+
+    .shadow{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+    }
+    .monstserrat{
+        font-family: 'Montserrat', sans-serif;
+
+    }
+    .overflow{ contain:none; overflow: visible; }
+
+    .paddingBox{
+        padding:40px;
+        margin-bottom:12px;
+        background-color:#76a4f3
+        ;width:100%;
+        border-color: white;
+        border-style: solid; 
+    }
+
+    ion-item{
+        font-family: 'Montserrat', sans-serif;
+
+    }
+    .rowx{
+        font-family: 'Roboto', sans-serif;
+    background-color:rgb(238, 238, 238);padding:3px;font-size:12px
+    }
+    .rowx>span{
+        margin-left: 12px
+    }
+
+
+    
+    
 }

@@ -1,0 +1,98 @@
+<ion-header>
+
+  <ion-navbar color="super">
+    <ion-title>Add Survey</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="showAlert()">
+        <ion-icon name="md-checkmark-circle-outline" ></ion-icon>
+      </button>
+      
+    </ion-buttons>
+  </ion-navbar>
+    
+  </ion-header>
+  
+  <ion-content padding>
+
+    <form (ngSubmit)="saveData()">
+      <ion-list>
+          <ion-item>
+        <ion-label floating>Category</ion-label>
+        <ion-select [(ngModel)]="data.category" name="category" required="">
+            <ion-option value="" ></ion-option>
+            <ion-option value="bank" >Bank</ion-option>
+            <ion-option value="school" >School</ion-option>
+            <ion-option value="telecom" >Telecom</ion-option>
+            <ion-option value="petrol" >Petrol</ion-option>
+            <ion-option value="others" >Others</ion-option>
+          </ion-select>
+      </ion-item>
+            <!-- <ion-auto-complete class="overflow"  [dataProvider]="completeTestService" [options]="{ placeholder : 'Category' }" [(ngModel)]="data.category" name="category"></ion-auto-complete> -->
+           <ion-item-divider></ion-item-divider>
+            <ion-auto-complete class="overflow"   (input)='checkBrand($event.target.value)' [dataProvider]="completeTestService" [options]="{ placeholder : 'Brands' , animated: true, type:'text'}" [(ngModel)]="data.brand" name="brand"></ion-auto-complete>
+            <ion-item-divider></ion-item-divider>
+            <ion-auto-complete class="overflow"  [dataProvider]="completeLocationService" [options]="{ placeholder : 'Location'  , animated: true, type:'search'}" [(ngModel)]="data.location" name="location"></ion-auto-complete>
+            <ion-item-divider></ion-item-divider>
+            <ion-auto-complete class="overflow"  [dataProvider]="completeNearService" [options]="{ placeholder : 'Near By'  , animated: true, type:'search'}" [(ngModel)]="data.nearby" name="nearby"></ion-auto-complete>
+
+    
+      <!-- <ion-item>
+        <ion-label floating>Brand</ion-label>
+        <ion-input type="text"  [(ngModel)]="data.brand" name="brand" required="" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Location</ion-label>
+        <ion-input type="text"  [(ngModel)]="data.location" name="location" required="" ></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>Near By</ion-label>
+          <ion-input type="text" [(ngModel)]="data.nearby" name="nearby" required="" ></ion-input>
+        </ion-item> -->
+      </ion-list>
+
+      <ion-slides >
+        <ion-slide >
+          <ion-img width="300px" height="300px" [src]="data.img1 || './assets/imgs/placeholde.jpg'" cache="true" ></ion-img>
+          <button ion-button block  type="button" color="super" (click)="takePhoto(1,$event)">Upload Photo 1</button>          
+        </ion-slide>
+        <ion-slide >
+            <ion-img width="300px" height="300px" [src]="data.img2 || './assets/imgs/placeholde.jpg'" cache="true" ></ion-img>                      
+            <button ion-button block  type="button" color="super"  (click)="takePhoto(2, $event)">Upload Photo 2</button>          
+          </ion-slide>
+          <ion-slide >
+              <ion-img width="300px" height="300px" [src]="data.img3 || './assets/imgs/placeholde.jpg'" cache="true" ></ion-img>                        
+              <button ion-button block  type="button" color="super"  (click)="takePhoto(3,$event)">Upload Photo 3</button>          
+            </ion-slide>
+      </ion-slides>
+
+
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label floating >Size</ion-label>
+            <ion-input style="letter-spacing: 0.25em;font-weight: 200;color:black" type="text" name="size" [(ngModel)]="data.size" pattern="\d{1}-\d{1}-\d{1}"
+            mask="*&quot; X *&quot; X *&quot; X *&quot;"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label floating>Type</ion-label>
+            <ion-select [(ngModel)]="data.type" multiple="false" name="type" >
+              <ion-option value="pana" >Pana</ion-option>
+              <ion-option value="flexdoor" >FlexDoor</ion-option>
+              <ion-option value="SignSign" >SignSign</ion-option>
+              <ion-option value="BoardGlass" >Door</ion-option>
+            </ion-select>
+          </ion-item>
+          </ion-col>
+      </ion-row>
+
+      <!-- <button ion-button type="submit" block>Save Data</button> -->
+    </form>
+
+
+
+    <p *ngIf="errx">
+      {{errx | json}}
+    </p>
+  </ion-content>
